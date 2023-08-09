@@ -1,0 +1,1 @@
+docker-compose -f public-transport-docker-compose-dev.yml up -d -> yml dosyası içerisinde bulunan container'ları ayağa kaldırır

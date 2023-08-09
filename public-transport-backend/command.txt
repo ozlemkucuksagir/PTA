@@ -1,0 +1,17 @@
+docker build -t pta_img .
+docker run -d --network=my-docker-network -p 8080:8080 --name=pta_con pta_img
+docker logs  pta_img
+--network=my-docker-network 
+
+docker run -d --network=my-docker-network -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=kozidb -v C:\postgres_container_data:/var/lib/postgresql/data --name=postgres_con postgres
+docker network create my-docker-network
+
+
+DOCKER COMMAND
+-t: İmajın etiketi (tag) belirlemek için kullanılır. Örneğin: -t pta_img şeklinde bir imaj etiketi belirtirsiniz.
+-d: Arkaplanda (detached modda) bir konteyner oluşturulmasını sağlar. Yani konteyner çalıştırıldıktan sonra terminalden ayrılabilirsiniz.
+-p: Host makinanın belirlediğiniz portunu konteynerin belirlediğiniz portuna yönlendirir. Örneğin: -p 8080:8080 host makinadaki 8080 portunu konteynerin 8080 portuna yönlendirir.
+-e: Environment (çevresel) değişkenleri belirlemek için kullanılır. Örneğin: -e POSTGRES_PASSWORD=koziPass şeklinde bir çevresel değişken belirleriniz.
+-it: Konteynerin etkileşimli modda başlatılmasını sağlar. -i girdi modunu, -t ise terminal bağlantısını temsil eder. Özellikle interaktif işlemler için kullanılır.
+docker ps: konteynerlerini görmek ve bilgi almak için
+docker image: imageleri görmek ve bilgi almak için
