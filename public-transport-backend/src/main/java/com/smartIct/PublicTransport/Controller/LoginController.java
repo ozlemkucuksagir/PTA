@@ -1,9 +1,11 @@
 package com.smartIct.PublicTransport.Controller;
 
+import com.smartIct.PublicTransport.DTO.UserDto;
 import com.smartIct.PublicTransport.Security.Request.JwtRequestModel;
 
 import com.smartIct.PublicTransport.Security.Response.JwtResponseModel;
 import com.smartIct.PublicTransport.Service.TokenService;
+import com.smartIct.PublicTransport.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.FilterChain;
+import java.util.List;
 
 @RestController
 //@Qualifier("inMemoryUserDetailsManager")
@@ -22,7 +25,8 @@ import javax.servlet.FilterChain;
 public class LoginController {
     @Autowired
     TokenService tokenService;
-
+@Autowired
+    UserService userService;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -30,10 +34,16 @@ public class LoginController {
         this.tokenService = tokenService;
         this.authenticationManager = authenticationManager;
     }
+    @GetMapping("/login")
+    public List<UserDto> getALlUserDto() {
+        List<UserDto>ss=userService.getAllUsersDto();
+        return ss;
+    }
 
-    @PostMapping("/login")
+    @PostMapping("/login1")
     public ResponseEntity<?> login(@RequestBody JwtRequestModel request) throws Exception {
         try {
+
             String username = request.getUsername();
             String password = request.getPassword();
 

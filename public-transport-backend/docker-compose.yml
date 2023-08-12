@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  pta-db-dev:
+    image: postgres
+    container_name: pta-db-dev
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: kozidb
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+    ports:
+      - "5432:5432"
+      # volumes:
+      # - C:\postgres_container_data:/var/lib/postgresql/data
+    networks:
+      network:
+        ipv4_address: 10.5.0.5
+  pta-app:
+    image: pta_img
+    restart: unless-stopped
+    depends_on:
+      - pta-db-dev
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://172.24.0.3:5432/kozidb
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#      - SPRING_DATASOURCE_PASSWORD=postgres
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "7000:8080"
+    networks:
+      network:
+        ipv4_address: 10.5.0.6
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

@@ -5,11 +5,11 @@ FROM amazoncorretto:17
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY build/libs/PublicTransport-0.0.1-SNAPSHOT.jar app.jar
+ADD build/libs/*.jar app.jar
 
 
 # Expose the port your application runs on
-EXPOSE 8080
+EXPOSE 7000
 
 # Command to run the application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

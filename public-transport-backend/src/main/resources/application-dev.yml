@@ -1,0 +1,8 @@
+#spring:
+ # datasource:
+  #  username: postgres
+   # password: postgres
+   # url: jdbc:postgresql://172.21.0.2:5432/kozidb
+  #sql:
+   # init:
+    #  mode: always

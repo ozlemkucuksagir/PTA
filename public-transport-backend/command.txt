@@ -15,3 +15,8 @@ DOCKER COMMAND
 -it: Konteynerin etkileşimli modda başlatılmasını sağlar. -i girdi modunu, -t ise terminal bağlantısını temsil eder. Özellikle interaktif işlemler için kullanılır.
 docker ps: konteynerlerini görmek ve bilgi almak için
 docker image: imageleri görmek ve bilgi almak için
+
+
+
+
+docker-compose -f docker-compose.yml up -d
